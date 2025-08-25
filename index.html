@@ -97,7 +97,8 @@
       <button onclick="append('1')">1</button>
       <button onclick="append('2')">2</button>
       <button onclick="append('3')">3</button>
-      <button onclick="calculate()" class="equal">=</button>
+      <button onclick="calculate()" class="equal" style="grid-column: span 4;">=</button>
+
 
       <button onclick="append('0')" style="grid-column: span 2;">0</button>
       <button onclick="append('.')">.</button>
@@ -126,6 +127,20 @@
         display.value = "Error";
       }
     }
+
+      document.addEventListener("keydown", (event) => {
+        if (!isNaN(event.key) || "+-*/.".includes(event.key)) {
+          append(event.key);
+        } else if (event.key === "Enter") {
+          calculate();
+        } else if (event.key === "Backspace") {
+          deleteLast();
+        } else if (event.key === "Escape") {
+          clearDisplay();
+        }
+      });
+
+
   </script>
 </body>
 </html>
